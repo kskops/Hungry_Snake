@@ -1,6 +1,7 @@
 import pygame
 import time
 import random
+
 """Функция используется для передвижения змеи. Принимает на вход переменные - dirict, отвечающую 
 за направление движения, и snake_size, отвечающую за размер одного блока змеи. Возвращает значения, 
 в каком напралении сдвинулась змея по оси X и Y"""
@@ -28,9 +29,11 @@ def moving(dirct, snake_size):
 """Функция испоьзуется для вывода количества очков. 
 Принимает на вход кол-во очков"""
 def score_change(score):
+    score_font = pygame.font.SysFont("comicsans", 35)
     value = score_font.render("Score: " + str(score), True, score_color)
     screen.blit(value, [0, 0])
     return score
+
 """Функция используется для вывода змеи. 
 Принимает на вход размер одного блока змейки и ее длинну"""
 def snake_change(snake_size, snake_list):
@@ -40,6 +43,7 @@ def snake_change(snake_size, snake_list):
 """Функция предназначена для вывода сообщений в игре. 
 На вход принимает само сообщение, его цвет, координаат по X и Y"""
 def message(msg, color, size_x, size_y):
+    font_style = pygame.font.SysFont("bahnschrift", 25)
     mesg = font_style.render(msg, True, color)
     screen.blit(mesg, [size_x, size_y])
 
@@ -49,6 +53,8 @@ def game_process():
 
     screen = pygame.display.set_mode((width, height))
     pygame.display.set_caption('Hungry snake')
+
+    score = 0
 
     game_over = False
     game_close = False
@@ -114,7 +120,7 @@ def game_process():
                 game_close = True
 
         snake_change(snake_size, snake_list)
-        score_change(snake_len - 1)
+        score_change(score)
 
         pygame.display.update()
 
@@ -122,6 +128,7 @@ def game_process():
             x_food = round(random.randrange(65, width - snake_size - 75) / 10.0) * 10.0
             y_food = round(random.randrange(65, height - snake_size - 75) / 10.0) * 10.0
             snake_len += 1
+            score = score_change(snake_len - 1)
 
         timing.tick(snake_speed)
 
@@ -155,9 +162,5 @@ timing = pygame.time.Clock()
 
 snake_size = 10
 snake_speed = 10
-
-font_style = pygame.font.SysFont("bahnschrift", 25)
-score_font = pygame.font.SysFont("comicsans", 35)
-
 
 game_process()
