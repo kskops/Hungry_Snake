@@ -2,10 +2,11 @@ import pygame
 import time
 import random
 
-"""Функция используется для передвижения змеи. Принимает на вход переменные - dirict, отвечающую 
-за направление движения, и snake_size, отвечающую за размер одного блока змеи. Возвращает значения, 
-в каком напралении сдвинулась змея по оси X и Y"""
+
 def moving(dirct, snake_size):
+    """Функция используется для передвижения змеи. Принимает на вход переменные - dirict, отвечающую
+    за направление движения, и snake_size, отвечающую за размер одного блока змеи. Возвращает значения,
+    в каком напралении сдвинулась змея по оси X и Y"""
     dx = 0
     dy = 0
     left = pygame.K_LEFT
@@ -154,13 +155,13 @@ screen_color = (72, 61, 139)
 
 width = 600
 height = 600
+if __name__ == "__main__":
+    screen = pygame.display.set_mode((width, height))
+    pygame.display.set_caption('Hungry snake')
 
-screen = pygame.display.set_mode((width, height))
-pygame.display.set_caption('Hungry snake')
+    timing = pygame.time.Clock()
 
-timing = pygame.time.Clock()
+    snake_size = 10
+    snake_speed = 10
 
-snake_size = 10
-snake_speed = 10
-
-game_process()
+    game_process()
