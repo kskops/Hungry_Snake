@@ -1,7 +1,8 @@
 import pygame
 import time
 import random
-
+"""Базу брала с данных сайтов: https://waksoft.susu.ru/2019/04/24/pygame-shpargalka-dlja-ispolzovanija/
+                               https://riptutorial.com/pygame"""
 def menu(choice):
     """Функция используется для изменения статуса игры
     Принимает на  вход choice - выбор, введенный игроком с клавиатуры
